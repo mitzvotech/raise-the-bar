@@ -1,0 +1,5 @@
+django
+django-bootstrap-form
+south
+django-model-utils
+django-extensions
