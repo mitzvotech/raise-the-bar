@@ -15,7 +15,7 @@ class Contact(TimeStampedModel):
 	first_name = models.CharField(max_length=50) 
 	last_name = models.CharField(max_length=50)
 	email = models.EmailField(blank=True, null=True)
-	phone_number = models.CharField(max_length=20)
+	phone_number = models.CharField(max_length=20, blank=True, null=True)
 	firm = models.ForeignKey(Firm)
 
 	def __str__(self):
