@@ -7,9 +7,11 @@ from model_utils import Choices
 
 class Firm(models.Model):
 	firm_name = models.CharField(max_length=100)
-
 	def __str__(self):
 		return self.firm_name
+
+	def get_absolute_url(self):
+		return "/firm/" + str(self.id)
 
 class Contact(TimeStampedModel):
 	first_name = models.CharField(max_length=50) 
@@ -19,7 +21,7 @@ class Contact(TimeStampedModel):
 	firm = models.ForeignKey(Firm)
 
 	def __str__(self):
-		return self.last_name + "," + self.first_name
+		return self.last_name + ", " + self.first_name
 
 class Note(TimeStampedModel):
 	user = models.ForeignKey(User)
@@ -28,7 +30,7 @@ class Note(TimeStampedModel):
 	content = models.TextField()
 
 	def __str__(self):
-		return self.id
+		return str(self.id)
 
 class Reminder(TimeStampedModel):
 	note = models.ForeignKey(Note)
@@ -36,4 +38,4 @@ class Reminder(TimeStampedModel):
 	content = models.TextField(blank=True, null=True)
 
 	def __str__(self):
-		return self.id
+		return str(self.id)

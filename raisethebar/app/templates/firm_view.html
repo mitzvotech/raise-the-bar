@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>{{firm.firm_name}}</h1>
+		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{firm.id}}">Add a Note!</a></p>
+      </div>
+    </div>
+<h2>Notes</h2>
+<ul>
+{%for note in notes%}
+<li>{{note.created}}, {{note.contact}}: {{note.content}} -- (Added by: {{note.user}})</li>
+{% endfor %}
+</ul>
+{% endblock content %}

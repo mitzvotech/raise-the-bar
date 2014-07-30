@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Firms</h1>
+	  </div>
+    </div>
+<h2>A list of Firms</h2>
+    <ul>
+        {% for firm in object_list %}
+            <a href="{{firm.get_absolute_url}}"><li>{{ firm.firm_name }}</li></a>
+        {% endfor %}
+    </ul>
+{% endblock content %}
