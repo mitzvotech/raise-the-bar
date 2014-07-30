@@ -30,18 +30,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Raise the Bar!</a>
+          <a class="navbar-brand" href="/firm">Raise the Bar!</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+        {% if user.is_authenticated %} 
+          <div class="navbar-text navbar-right">
+          Welcome, {{user}}. <a href="/logout">Logout.</a>
+          </div>
+          {% endif %}
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -55,8 +51,8 @@
 
       <hr>
 
-      <footer>
-        <p>&copy; Company 2014</p>
+      <footer id="footer">
+        <p>V. David Zvenyach. <a href="https://github.com/mitzvotech/raise-the-bar">Source Code</a> available <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
       </footer>
     </div> <!-- /container -->
         <script src="{% static 'js/vendor/jquery-1.11.0.min.js' %}"></script>

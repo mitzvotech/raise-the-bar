@@ -8,7 +8,7 @@ $("#new_contact_save").click(function () {
 	}
 	$.ajax({
 		type:"post",
-		url:"http://localhost:8000/addcontact", 
+		url:"http://mitzvotech.org:8080/addcontact", 
 		data:contact_data,
 		dataType:'json',
 		headers: {'X-CSRFToken': $.cookie('csrftoken')}

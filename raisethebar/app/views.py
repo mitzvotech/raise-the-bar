@@ -9,14 +9,17 @@ import datetime
 
 # Create your views here.
 
+@login_required
 def home(request):
 	return HttpResponse("hello")
 
+@login_required
 def firm_view(request, firm_id):
 	firm = Firm.objects.get(pk=firm_id)
 	notes = Note.objects.filter(firm__id=firm_id)
 	return render(request, 'firm_view.html', {'firm':firm, 'notes':notes}, context_instance=RequestContext(request))
 
+@login_required
 def add_contact(request):
 	if request.method == "POST":
 			if request.is_ajax():
@@ -25,7 +28,7 @@ def add_contact(request):
 				return HttpResponse('"' + str(c.id) + "," + str(created) + '"')
 	return HttpResponseRedirect("/firm/" + str(firm_id))
 
-#@login_required
+@login_required
 def add_note(request, firm_id):
 	if request.method == "POST":
 		n = Note()
