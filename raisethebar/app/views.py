@@ -6,18 +6,25 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, QueryDict, HttpResponseRedirect
 import datetime
+from django.views.generic import ListView
 
 # Create your views here.
 
 @login_required
 def home(request):
-	return HttpResponse("hello")
+	return HttpResponseRedirect("/firm")
 
 @login_required
 def firm_view(request, firm_id):
 	firm = Firm.objects.get(pk=firm_id)
 	notes = Note.objects.filter(firm__id=firm_id)
 	return render(request, 'firm_view.html', {'firm':firm, 'notes':notes}, context_instance=RequestContext(request))
+
+@login_required
+def contact_view(request, contact_id):
+	contact = Contact.objects.get(pk=contact_id)
+	notes = Note.objects.filter(contact__id=contact_id)
+	return render(request, 'contact_view.html', {'contact':contact, 'notes':notes}, context_instance=RequestContext(request))
 
 @login_required
 def add_contact(request):
@@ -38,7 +45,6 @@ def add_note(request, firm_id):
 		n.contact = Contact.objects.get(pk=request.POST["contact-select"])
 		n.content = request.POST["content"]
 		n.save()
-#		return HttpResponseRedirect(reverse('/firm-view/', + str(firm_id))
 		return HttpResponseRedirect(reverse('firm-view', args=(firm_id,)))	
 
 	else:

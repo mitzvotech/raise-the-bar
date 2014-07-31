@@ -23,6 +23,10 @@ class Contact(TimeStampedModel):
 	def __str__(self):
 		return self.last_name + ", " + self.first_name
 
+	def get_absolute_url(self):
+		return "/contact/" + str(self.id)
+
+
 class Note(TimeStampedModel):
 	user = models.ForeignKey(User)
 	contact = models.ForeignKey(Contact, blank=True, null=True)
