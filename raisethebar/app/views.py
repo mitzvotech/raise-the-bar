@@ -29,7 +29,11 @@ def firm_view(request, firm_id):
 def contact_view(request, contact_id):
 	contact = Contact.objects.get(pk=contact_id)
 	notes = Note.objects.filter(contact__id=contact_id)
-	reminders = Reminder.objects.select_related("note")
+	reminders = []
+	for note in notes:
+		r = Reminder.objects.filter(note_id=note.id)
+		if r.exists():
+			reminders.append(r[0])
 	return render(request, 'contact_view.html', {'contact':contact, 'notes':notes, "reminders":reminders}, context_instance=RequestContext(request))
 
 @login_required
@@ -41,6 +45,10 @@ def note_view(request, note_id):
 @login_required
 def reminder_view(request, reminder_id):
 	reminder = Reminder.objects.get(pk=reminder_id)
+	if request.method == "POST":
+		print "YO!!!"
+		reminder.done = True
+		reminder.save() 
 	return render(request, 'reminder_view.html', {'reminder':reminder}, context_instance=RequestContext(request))
 
 @login_required

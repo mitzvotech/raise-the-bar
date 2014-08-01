@@ -4,6 +4,8 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Note re: <a href="{{note.contact.get_absolute_url}}">{{note.contact}}</a></h1>
+        <h2>Firm: <a href="{{note.firm.get_absolute_url}}">{{note.firm}}</a></h2>
+
 		{% if note.contact.title %}<h2>{{note.contact.title}}</h2>{% endif %}
         {% if note.contact.contact_notes %}<p>{{note.contact.contact_notes}}</p>{% endif %}
         <p>{{note.contact.phone_number}}</p>

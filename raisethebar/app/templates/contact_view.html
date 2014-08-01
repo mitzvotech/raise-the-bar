@@ -4,6 +4,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>{{contact}}</h1>
+        <h2>Firm: <a href="{{contact.firm.get_absolute_url}}">{{contact.firm}}</a></h2>
         {% if contact.title %}<h2>{{contact.title}}</h2>{% endif %}
         {% if contact.contact_notes %}<p>{{contact.contact_notes}}</p>{% endif %}
         <p>{{contact.phone_number}}</p>
@@ -11,6 +12,9 @@
 		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{contact.firm.id}}">Add a Note!</a></p>
       </div>
     </div>
+
+<div class="row">
+<div class="col-md-6">
 <h2>Notes</h2>
 <ul>
 {%for note in notes %}
@@ -18,4 +22,15 @@
 </li>
 {% endfor %}
 </ul>
+</div>
+<div class="col-md-6">
+<h2>Reminders</h2>
+{%for reminder in reminders%}
+{% if reminder.done == True %}<li><del><a href="{{reminder.get_absolute_url}}">{{reminder}}</a></del> -- (Added by: {{reminder.note.user}})</li>
+{% else %}
+<li><a href="{{reminder.get_absolute_url}}">{{reminder}}</a> -- (Added by: {{reminder.note.user}})</li>
+{% endif %}
+{% endfor %}
+</div>
+</div>
 {% endblock content %}
