@@ -4,6 +4,10 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Note re: <a href="{{note.contact.get_absolute_url}}">{{note.contact}}</a></h1>
+		{% if note.contact.title %}<h2>{{note.contact.title}}</h2>{% endif %}
+        {% if note.contact.contact_notes %}<p>{{note.contact.contact_notes}}</p>{% endif %}
+        <p>{{note.contact.phone_number}}</p>
+        <p><a href="mailto:{{note.contact.email}}"><button type="button" class="btn btn-danger btn-lg">Send Email</button></a></p>
 		<p><a class="btn btn-primary btn-lg" role="button" href="/note/addreminder/{{note.id}}">Add a Reminder!</a></p>
       </div>
     </div>

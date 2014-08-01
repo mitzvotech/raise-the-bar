@@ -4,6 +4,10 @@
     <div class="jumbotron">
       <div class="container">
         <h1>{{contact}}</h1>
+        {% if contact.title %}<h2>{{contact.title}}</h2>{% endif %}
+        {% if contact.contact_notes %}<p>{{contact.contact_notes}}</p>{% endif %}
+        <p>{{contact.phone_number}}</p>
+        <p><a href="mailto:{{contact.email}}"><button type="button" class="btn btn-danger btn-lg">Send Email</button></a></p>
 		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{contact.firm.id}}">Add a Note!</a></p>
       </div>
     </div>

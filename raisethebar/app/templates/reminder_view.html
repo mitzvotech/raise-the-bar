@@ -3,7 +3,11 @@
 {% block content %}
     <div class="jumbotron">
       <div class="container">
-        <h1>Reminder</h1>
+        <h1>Reminder re: <a href="{{reminder.note.contact.get_absolute_url}}">{{reminder.note.contact}}</a></h1>
+        {% if reminder.note.contact.title %}<h2>{{reminder.note.contact.title}}</h2>{% endif %}
+        {% if reminder.note.contact.contact_notes %}<p>{{reminder.note.contact.contact_notes}}</p>{% endif %}
+        <p>{{reminder.note.contact.phone_number}}</p>
+        <p><a href="mailto:{{reminder.note.contact.email}}"><button type="button" class="btn btn-danger btn-lg">Send Email</button></a></p>
 		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{note.firm.id}}">Add a Note!</a></p>
       </div>
     </div>
