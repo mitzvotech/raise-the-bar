@@ -2,7 +2,8 @@
 {% load bootstrap %}
 {% block content %}
 <h1>{{firm.firm_name}}</h1>
-<form action="/firm/addnote/{{firm.id}}/" method="POST">
+<h2>Add a Note</h2>
+<form id="note_form" action="/firm/addnote/{{firm.id}}/" method="POST">
 	{% csrf_token %}
 <div class="form-group">
 		<h3><label class="control-label ">Contact</label></h3>
@@ -20,7 +21,8 @@
 	<h3><label class="control-label ">Content</label></h3>
 	{{nform.content}}
 </div>
-<button type="submit">Submit</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_reminder_modal">Add Reminder</button>
+<button class="btn btn-success" type="submit">Submit</button>
 </form>
 <div class="modal fade" id="new_contact_modal">
   <div class="modal-dialog">
@@ -43,5 +45,29 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="new_reminder_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Add a Reminder</h4>
+      </div>
+      <div class="modal-body">
+        <form id="new_reminder_form" action="" method="POST">
+        {% csrf_token %}
+        {{ rform | bootstrap }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="new_reminder_save" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 
 {% endblock content %}

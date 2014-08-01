@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Note re: <a href="{{note.contact.get_absolute_url}}">{{note.contact}}</a></h1>
+		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{note.firm.id}}">Add a Note!</a></p>
+      </div>
+    </div>
+
+<h2>Note Content</h2>
+<p>{{note.content}}</p>
+<p><em>Added by:</em> {{note.user}}</em></p>
+<hr />
+<h2>Reminders</h2>
+<ul>
+{%for reminder in reminders%}
+{% if reminder.done == True %}<p><del><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_content}}</a></del></p>
+{% else %}
+<p><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_content}}</a></p>{% endif %}{% endfor %}
+</ul>
+{% endblock content %}
