@@ -17,6 +17,6 @@
 {%for reminder in reminders%}
 {% if reminder.done == True %}<p><del><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_content}}</a></del></p>
 {% else %}
-<p><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_content}}</a></p>{% endif %}{% endfor %}
+<p><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_date}}: {{reminder.reminder_content}}</a></p>{% endif %}{% endfor %}
 </ul>
 {% endblock content %}
