@@ -43,3 +43,7 @@ $("#new_reminder_save").click(function () {
 function hiddenInput (tag, value) {
 	return "<input type='hidden' name='" + tag + "' value='" + value + "'>"
 }
+
+$("#contact-select-button").click(function (){
+	window.location.replace("/contact/" + $("#contact-select").val());
+})

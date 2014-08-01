@@ -17,13 +17,14 @@ def home(request):
 @login_required
 def firm_view(request, firm_id):
 	firm = Firm.objects.get(pk=firm_id)
-	notes = Note.objects.filter(firm__id=firm_id)
+	contacts = Contact.objects.filter(firm__id=firm_id).order_by("last_name","first_name")
+	notes = Note.objects.filter(firm__id=firm_id).order_by("-modified")
 	reminders = []
 	for note in notes:
 		r = Reminder.objects.filter(note_id=note.id)
 		if r.exists():
 			reminders.append(r[0])
-	return render(request, 'firm_view.html', {'firm':firm, 'notes':notes, 'reminders':reminders}, context_instance=RequestContext(request))
+	return render(request, 'firm_view.html', {'firm':firm, 'notes':notes, 'contacts':contacts, 'reminders':reminders}, context_instance=RequestContext(request))
 
 @login_required
 def contact_view(request, contact_id):
