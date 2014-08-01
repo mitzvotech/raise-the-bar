@@ -14,9 +14,4 @@
 </li>
 {% endfor %}
 </ul>
-
-{% regroup reminders by note as reminderlist %}
-{% for r in reminderlist %}
-{{r}}
-{% endfor %}
 {% endblock content %}
