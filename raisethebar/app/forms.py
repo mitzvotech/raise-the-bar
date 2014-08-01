@@ -22,3 +22,7 @@ class ReminderForm(ModelForm):
 		widgets = {
             'reminder': forms.DateInput(attrs={'class': 'form-control'}),
         }
+
+class FirmUpdateForm(ModelForm):
+	class Meta:
+		model = Firm

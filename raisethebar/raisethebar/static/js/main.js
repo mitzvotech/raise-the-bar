@@ -4,7 +4,9 @@ $("#new_contact_save").click(function () {
 		"last_name": $("#id_last_name").val(),
 		"email": $("#id_email").val(),
 		"phone_number": $("#id_phone_number").val(),
-		"firm": $("#firm_id").val()
+		"firm": $("#firm_id").val(),
+		"title": $("#id_title").val(),
+		"contact_notes": $("#id_contact_notes").val()
 	}
 	$.ajax({
 		type:"post",

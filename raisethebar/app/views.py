@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, QueryDict, HttpResponseRedirect
 from datetime import datetime
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 
 # Create your views here.
 
@@ -44,6 +44,7 @@ def add_contact(request):
 	if request.method == "POST":
 			if request.is_ajax():
 				d = QueryDict(request.body)
+				print d
 				c, created = Contact.objects.get_or_create(first_name=d["first_name"],last_name=d['last_name'],title=d['title'],email=d['email'],phone_number=d['phone_number'],contact_notes=d['contact_notes'],firm=Firm.objects.get(pk=int(d['firm'])))
 				return HttpResponse('"' + str(c.id) + "," + str(created) + '"')
 	return HttpResponseRedirect("/firm/" + str(firm_id))
@@ -69,12 +70,15 @@ def add_note(request, firm_id):
 		n.contact = Contact.objects.get(pk=request.POST["contact-select"])
 		n.content = request.POST["content"]
 		n.save()
-		if request.POST['reminder_date'] != "":
+		try:
+			rd = request.POST['reminder_date']
 			r = Reminder()
 			r.note = n
-			r.reminder_date = datetime.strptime(request.POST['reminder_date'],"%m/%d/%Y")
+			r.reminder_date = datetime.strptime(rd,"%m/%d/%Y")
 			r.reminder_content = request.POST['reminder_content']
 			r.save()
+		except:
+			pass
 		return HttpResponseRedirect(reverse('firm-view', args=(firm_id,)))	
 
 	else:
