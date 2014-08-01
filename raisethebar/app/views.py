@@ -18,7 +18,11 @@ def home(request):
 def firm_view(request, firm_id):
 	firm = Firm.objects.get(pk=firm_id)
 	notes = Note.objects.filter(firm__id=firm_id)
-	reminders = Reminder.objects.select_related("note")
+	reminders = []
+	for note in notes:
+		r = Reminder.objects.filter(note_id=note.id)
+		if r.exists():
+			reminders.append(r[0])
 	return render(request, 'firm_view.html', {'firm':firm, 'notes':notes, 'reminders':reminders}, context_instance=RequestContext(request))
 
 @login_required

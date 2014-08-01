@@ -21,7 +21,7 @@
 <div class="col-md-6">
 <h2>Reminders</h2>
 {%for reminder in reminders%}
-<li><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_date}}</a>, <a href="{{reminder.note.get_absolute_url}}">{{reminer.reminder_content}}</a> -- (Added by: {{note.user}})</li>
+<li><a href="{{reminder.get_absolute_url}}">{{reminder}}</a> -- (Added by: {{reminder.note.user}})</li>
 {% endfor %}
 </div>
 </div>
