@@ -18,7 +18,7 @@ class ContactForm(ModelForm):
 class ReminderForm(ModelForm):
 	class Meta:
 		model = Reminder
-		exclude = ['note']
+		exclude = ['note','done']
 		widgets = {
             'reminder': forms.DateInput(attrs={'class': 'form-control'}),
         }

@@ -39,7 +39,6 @@ def reminder_view(request, reminder_id):
 	reminder = Reminder.objects.get(pk=reminder_id)
 	return render(request, 'reminder_view.html', {'reminder':reminder}, context_instance=RequestContext(request))
 
-
 @login_required
 def add_contact(request):
 	if request.method == "POST":
@@ -48,6 +47,17 @@ def add_contact(request):
 				c, created = Contact.objects.get_or_create(first_name=d["first_name"],last_name=d['last_name'],title=d['title'],email=d['email'],phone_number=d['phone_number'],contact_notes=d['contact_notes'],firm=Firm.objects.get(pk=int(d['firm'])))
 				return HttpResponse('"' + str(c.id) + "," + str(created) + '"')
 	return HttpResponseRedirect("/firm/" + str(firm_id))
+
+@login_required
+def add_reminder(request, note_id):
+	if request.method == "POST":
+		d = request.POST
+		d["reminder_date"] = datetime.strptime(request.POST['reminder_date'],"%m/%d/%Y")
+		r, created = Reminder.objects.get_or_create(note=Note.objects.get(pk=note_id), reminder_date=d['reminder_date'],reminder_content=d['reminder_content'],done=False)
+		return HttpResponseRedirect(reverse('note-view', args=(note_id,)))	
+	else:
+		r = ReminderForm()
+		return render(request, "add_reminder.html", {'reminder':r, 'note_id':note_id}, context_instance=RequestContext(request))
 
 @login_required
 def add_note(request, firm_id):

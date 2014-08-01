@@ -14,6 +14,7 @@ urlpatterns = patterns('',
  	url(r'^firm/(?P<firm_id>[0-9]+)/$', 'app.views.firm_view', name='firm-view'),
 	url(r'^firm/addnote/(?P<firm_id>[0-9]+)/$', 'app.views.add_note', name='note-add'),
 	url(r'^note/(?P<note_id>[0-9]+)/$', 'app.views.note_view', name='note-view'),
+	url(r'^note/addreminder/(?P<note_id>[0-9]+)/$', 'app.views.add_reminder', name='reminder-add'),
 	url(r'^reminder/(?P<reminder_id>[0-9]+)/$', 'app.views.reminder_view', name='reminder-view'),
 	url(r'^$', 'app.views.home')
 )
