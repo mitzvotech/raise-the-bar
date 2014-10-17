@@ -1,0 +1,8 @@
+Django==1.7
+psycopg2
+django-bootstrap-form
+django-model-utils
+django-extensions
+django-toolbelt
+dj-database-url
+whitenoise
