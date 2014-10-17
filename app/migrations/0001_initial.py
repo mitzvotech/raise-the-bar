@@ -42,7 +42,6 @@ class Migration(migrations.Migration):
                 ('firm_name', models.CharField(max_length=100)),
                 ('status', model_utils.fields.StatusField(default=b'participating', max_length=100, no_check_for_status=True, choices=[(b'participating', b'participating'), (b'declined', b'declined'), (b'pending', b'pending'), (b'other', b'other')])),
                 ('headquarters', models.CharField(default=b'DC', max_length=100)),
-                ('firm_notes', models.TextField(null=True, blank=True)),
             ],
             options={
             },
