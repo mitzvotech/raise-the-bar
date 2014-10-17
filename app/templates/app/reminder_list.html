@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Reminders</h1>
+        <p><a class="btn btn-primary btn-lg" role="button" href="/firm/add/">Add a Reminder!</a></p>
+	  </div>
+    </div>
+<h2>A list of Reminders</h2>
+    <ul>
+        {% for reminder in object_list %}
+            <li><a href="{{reminder.get_absolute_url}}">{{reminder.reminder_date}}: {{reminder.reminder_content}}</a> -- (Contact details: <a href="{{reminder.note.contact.get_absolute_url}}">{{reminder.note.contact}}</a>)</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

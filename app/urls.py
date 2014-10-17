@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, UpdateView
-from app.models import Firm, Contact, Note
+from app.models import Firm, Contact, Note, Reminder
 from app.forms import FirmUpdateForm
 
 urlpatterns = patterns('',
@@ -20,5 +20,6 @@ urlpatterns = patterns('',
 	url(r'^note/(?P<note_id>[0-9]+)/$', 'app.views.note_view', name='note-view'),
 	url(r'^note/addreminder/(?P<note_id>[0-9]+)/$', 'app.views.add_reminder', name='reminder-add'),
 	url(r'^reminder/(?P<reminder_id>[0-9]+)/$', 'app.views.reminder_view', name='reminder-view'),
+	url(r'^reminders/$', login_required(ListView.as_view(queryset=Reminder.objects.order_by("reminder_date").filter(done=False)))),
 	url(r'^$', 'app.views.home')
 )

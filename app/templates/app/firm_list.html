@@ -3,14 +3,23 @@
 {% block content %}
     <div class="jumbotron">
       <div class="container">
-        <h1>Firms</h1>
-        <p><a class="btn btn-primary btn-lg" role="button" href="/firm/add/">Add a Firm!</a></p>
-	  </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Firms</h1>
+                <p><a class="btn btn-primary btn-lg" role="button" href="/firm/add/">Add a Firm!</a></p>
+            </div>
+            <div class="col-sm-6">
+                <h1>Reminders</h1>
+                <p><a class="btn btn-success btn-lg" role="button" href="/reminders">Reminders!</a></p>
+            </div>
+            </div>
+            </div>
     </div>
-<h2>A list of Firms</h2>
+    <h2>A list of Firms</h2>
     <ul>
         {% for firm in object_list %}
             <a href="{{firm.get_absolute_url}}"><li>{{ firm.firm_name }} -- {{firm.status}}</li></a>
         {% endfor %}
     </ul>
+
 {% endblock content %}
