@@ -56,7 +56,7 @@ ROOT_URLCONF = 'raisethebar.urls'
 
 WSGI_APPLICATION = 'raisethebar.wsgi.application'
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
