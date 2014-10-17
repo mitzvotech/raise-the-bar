@@ -12,6 +12,7 @@ class Firm(models.Model):
 	firm_name = models.CharField(max_length=100)
 	status = StatusField()
 	headquarters = models.CharField(max_length=100, default="DC")
+	firm_notes = models.TextField(blank=True, null=True)
 
 	def __str__(self):
 		return self.firm_name
