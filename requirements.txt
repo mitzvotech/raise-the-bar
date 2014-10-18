@@ -6,3 +6,4 @@ django-extensions
 django-toolbelt
 dj-database-url
 whitenoise
+django-sslify>=0.2
