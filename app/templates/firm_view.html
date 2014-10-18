@@ -3,10 +3,20 @@
 {% block content %}
     <div class="jumbotron">
       <div class="container">
-        <h1>{{firm.firm_name}}</h1>
+      <h1>{{firm.firm_name}}  <a class="btn btn-danger btn-lg" role="button" href="/firm/update/{{firm.id}}">Update the Firm!</a></h1>
+
+      	<div class="row">
+      	<div class="col-sm-6">
+        
         <h2>Status: {{firm.status}}</h2>
         <h2>HQ: {{firm.headquarters}}</h2>
-
+        </div>
+        <div class="col-sm-6">
+        <h2>Notes: </h2>
+        <p>{{firm.firm_notes}}</p>
+        </div>
+        </div>
+        <hr/>
         <div class="form-group">
         <div class="input-group">
 		<select class="form-control" id="contact-select" name="contact-select">
@@ -20,7 +30,6 @@
 		</div>
 		</div>
 
-		<p><a class="btn btn-danger btn-lg" role="button" href="/firm/update/{{firm.id}}">Update the Firm!</a></p>
 		<p><a class="btn btn-primary btn-lg" role="button" href="/firm/addnote/{{firm.id}}">Add a Note!</a></p>
       </div>
     </div>
