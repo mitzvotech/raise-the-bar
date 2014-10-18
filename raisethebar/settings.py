@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '&1036+rtdvhjpcv9&6ups5)ibs0gu946$-hdbkkpy)hg_q(va%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -96,3 +96,8 @@ STATICFILES_DIRS = (
 
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
+
+if os.environ['PRODUCTION_ENV'] == 'False':
+    DEBUG = True
+else:
+    DEBUG = False
